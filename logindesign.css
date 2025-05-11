@@ -1,0 +1,46 @@
+.textfield{
+    -fx-background-color:transparent;
+    -fx-border-color:#fff;
+    -fx-border-width:.4px;
+    -fx-border-radius:4px;
+    -fx-font-size:13px;
+    -fx-font-weight:bold;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Tahoma";
+}
+.textfield:focused{
+    -fx-border-color:#42c6ff;
+    -fx-border-width:1.4px;
+}
+
+.login-btn{
+    -fx-background-color:#fff;
+    -fx-background-radius:15px;
+    -fx-cursor:hand;
+    -fx-font-size:14px;
+    -fx-text-fill:#000;
+    -fx-font-family:"Arial";
+    -fx-font-weight:bold;
+}
+.login-btn:hover{
+    -fx-background-color:#42c6ff;
+}
+.signup-textfield{
+    -fx-background-color:transparent;
+
+    -fx-border-color:#fff;
+    -fx-border-width:.4px;
+    -fx-border-radius:4px;
+    -fx-font-size:10px;
+    -fx-font-weight:bold;
+    -fx-text-fill:#42c6ff;
+    -fx-font-family:"Tahoma";
+}
+.signup-textfield:focused{
+    -fx-border-color:linear-gradient(to bottom right, #449d6b, #633364);
+    -fx-border-width:1.4px;
+}
+.trans-btn{
+-fx-background-color: transparent;
+-fx-border-color:transparent;
+}
