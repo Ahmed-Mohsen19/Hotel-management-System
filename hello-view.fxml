@@ -45,7 +45,7 @@
                 <Font name="System Bold" size="12.0" />
             </font></TextField>
         <PasswordField fx:id="login_password" layoutX="391.0" layoutY="325.0" prefHeight="41.0" prefWidth="248.0" promptText="Password" styleClass="textfield" stylesheets="@logindesign.css" />
-        <Button fx:id="login_btn" layoutX="439.0" layoutY="396.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@logindesign.css" text="Login" textFill="#91ebfb">
+        <Button fx:id="login_btn" layoutX="439.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@logindesign.css" text="Login" textFill="#91ebfb">
             <font>
                 <Font name="Berlin Sans FB" size="12.0" />
             </font>
