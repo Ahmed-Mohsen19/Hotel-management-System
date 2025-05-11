@@ -47,16 +47,11 @@
          </font>
       </TextField>
       <PasswordField fx:id="pass_signup" layoutX="398.0" layoutY="257.0" prefHeight="41.0" prefWidth="248.0" promptText="Password" styleClass="textfield" stylesheets="@logindesign.css" />
-      <Button fx:id="signup_btn" layoutX="453.0" layoutY="383.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@logindesign.css" text="SignUp" textFill="#91ebfb">
+      <Button fx:id="signup_btn" layoutX="453.0" layoutY="383.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@logindesign.css" text="SignUp" textFill="#91ebfb">
          <font>
             <Font name="Berlin Sans FB" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="confirmpass_signup" layoutX="398.0" layoutY="314.0" prefHeight="41.0" prefWidth="248.0" promptText="confirmPassword" styleClass="textfield" stylesheets="@logindesign.css">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </TextField>
       <ImageView fitHeight="68.0" fitWidth="71.0" layoutX="475.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@log-in.png" />
@@ -67,5 +62,6 @@
             <Label styleClass="signup-textfield" stylesheets="@logindesign.css" text="Already have account?" textFill="#42c6ff" />
          </graphic>
       </Button>
+      <PasswordField fx:id="confirmpass_signup" layoutX="398.0" layoutY="308.0" prefHeight="41.0" prefWidth="248.0" promptText="Confirm Password" styleClass="textfield" stylesheets="@logindesign.css" />
    </children>
 </AnchorPane>
