@@ -1,0 +1,218 @@
+/* === Enhanced Root Styles === */
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-base: #C49A6C; /* Light Sand base */
+}
+
+/* === Main Container === */
+.vbox-container {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-background-radius: 10;
+    -fx-border-color: #A67C52;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 0);
+}
+
+/* ==== STROKED LABEL STYLES ==== */
+
+/* Main Title (label3) - With Stroke */
+.label3 {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #002D33; /* Darkest teal for maximum contrast */
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.8), 0,0,0,2);
+    -fx-padding: 0 0 15 0;
+    -fx-alignment: center;
+    -fx-content-display: center;
+    -fx-graphic-text-gap: 10;
+}
+
+/* Category Headers (label2) - With Stroke */
+.label2 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-stroke: #006A75;
+    -fx-stroke-width: 1.5px;
+    -fx-background-color: linear-gradient(to bottom, #00B3B3, #008A8A);
+    -fx-background-radius: 8;
+    -fx-padding: 8 20;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+
+/* Regular Labels (label) - With Stroke */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+    -fx-stroke: #004D58;
+    -fx-stroke-width: 1px;
+    -fx-padding: 3 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2,0,0,1);
+}
+
+/* Special Label Types */
+.label.title {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-stroke: #002D33;
+    -fx-stroke-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,75,88,0.5), 0,0,0,3);
+}
+
+.label.section-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-stroke: #006A75;
+    -fx-stroke-width: 1px;
+    -fx-padding: 10 0 5 0;
+    -fx-border-color: #00B3B3 transparent transparent transparent;
+    -fx-border-width: 2 0 0 0;
+}
+
+.label.price {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-stroke: #002D33;
+    -fx-stroke-width: 1px;
+    -fx-font-size: 16px;
+    -fx-padding: 0 5 0 10;
+}
+
+.label.quantity {
+    -fx-font-style: italic;
+    -fx-text-fill: white;
+    -fx-stroke: #006A75;
+    -fx-stroke-width: 1px;
+    -fx-padding: 0 5 0 5;
+}
+
+/* === Form Controls === */
+.combo-box, .text-field, .spinner {
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-text-fill: #004D58;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-border-color: #A67C52;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-padding: 7;
+}
+
+/* === Buttons === */
+.button {
+    -fx-background-color: #00B3B3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5,0,0,1);
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #008A8A;
+}
+
+.button:pressed {
+    -fx-background-color: #006A75;
+}
+
+/* === Checkboxes === */
+.check-box {
+    -fx-text-fill: white;
+    -fx-stroke: #004D58;
+    -fx-stroke-width: 0.5px;
+    -fx-font-size: 14px;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #A67C52;
+    -fx-border-radius: 3;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #00B3B3;
+}
+
+/* === Spinner with Visible Buttons and Clear Arrows === */
+.spinner {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Text field styling */
+.spinner .text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 3 0 0 3;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3 0 0 3;
+    -fx-border-width: 1;
+    -fx-padding: 5 8 5 8;
+    -fx-font-size: 14px;
+}
+
+/* Common button styling */
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #00B3B3;
+    -fx-background-insets: 0;
+    -fx-padding: 0 8 0 8;
+    -fx-cursor: hand;
+    -fx-min-width: 20px;
+    -fx-min-height: 15px;
+}
+
+/* Increment button (top) */
+.spinner .increment-arrow-button {
+    -fx-background-radius: 0 3 0 0;
+    -fx-border-color: #008A8A;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Decrement button (bottom) */
+.spinner .decrement-arrow-button {
+    -fx-background-radius: 0 0 3 0;
+    -fx-border-color: #008A8A;
+    -fx-border-width: 0 1 1 0;
+}
+
+/* Hover states */
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #008A8A;
+}
+
+/* Arrow styling */
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: white;
+    -fx-padding: 0;
+    -fx-shape: none;
+    -fx-background-image: null;
+}
+
+/* Up arrow for increment */
+.spinner .increment-arrow {
+    -fx-shape: "M 0 4 h 8 l -4 -4 z";
+    -fx-scale-shape: false;
+}
+
+/* Down arrow for decrement */
+.spinner .decrement-arrow {
+    -fx-shape: "M 0 0 h 8 l -4 4 z";
+    -fx-scale-shape: false;
+}
+
+/* Focus state */
+.spinner:focused .text-field {
+    -fx-border-color: #00B3B3;
+    -fx-border-width: 1.5;
+}
