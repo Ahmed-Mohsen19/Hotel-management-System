@@ -1,0 +1,24 @@
+.booked-label {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(166,124,82,0.8), 15, 0.7, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-cursor: hand;
+}
+
+.button-teal {
+    -fx-background-color: #006A75;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-teal:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,106,117,0.8), 15, 0.7, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-cursor: hand;
+}
