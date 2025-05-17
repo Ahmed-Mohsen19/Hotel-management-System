@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.booking.HotelBookingController">
+    <children>
+      <ImageView fitHeight="516.0" fitWidth="727.0" layoutX="1.0" layoutY="-4.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Booking.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="459.0" layoutX="391.0" layoutY="16.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" style="-fx-scale-z: 15;" width="291.0" />
+      <TextField fx:id="firstNameField" layoutX="406.0" layoutY="76.0" prefHeight="23.0" prefWidth="86.0" promptText="First Name" />
+      <TextField fx:id="lastNameField" layoutX="564.0" layoutY="75.0" prefHeight="26.0" prefWidth="106.0" promptText="Last Name" />
+      <TextField fx:id="phoneField" layoutX="406.0" layoutY="126.0" prefHeight="26.0" prefWidth="106.0" promptText="phone" />
+      <DatePicker fx:id="checkInField" layoutX="406.0" layoutY="246.0" opacity="0.8" promptText="YY-MM-DD" />
+      <DatePicker fx:id="checkOutField" layoutX="406.0" layoutY="310.0" opacity="0.8" promptText="YY-MM-DD" />
+      <Button fx:id="nextButton" layoutX="579.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBooking" prefHeight="36.0" prefWidth="86.0" text="Next&gt;&gt;" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check In" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check Out" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Guests" />
+      <Text fill="WHITE" layoutX="564.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+      <Line endX="100.0" layoutX="530.0" layoutY="424.0" startX="-100.0" stroke="WHITE" />
+      <Text fx:id="errorLabel" fill="RED" layoutX="524.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error" />
+      <TextField fx:id="ssnField" layoutX="564.0" layoutY="126.0" prefHeight="26.0" prefWidth="106.0" promptText="SSN" />
+      <Text fill="WHITE" layoutX="564.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSN" />
+
+        <Spinner fx:id="guests_Spinner" layoutX="409.0" layoutY="375.0" opacity="0.81" prefHeight="26.0" prefWidth="80.0" />
+      <Text fill="WHITE" layoutX="428.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HyaHHotel Booking Form">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="emailField" layoutX="406.0" layoutY="186.0" prefHeight="26.0" prefWidth="251.0" promptText="e-mail" />
+      <Text fill="WHITE" layoutX="408.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+
+    </children>
+   <stylesheets>
+      <URL value="@booking.css" />
+   </stylesheets>
+</AnchorPane>
