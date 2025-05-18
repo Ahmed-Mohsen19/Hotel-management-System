@@ -43,22 +43,29 @@
         <TextField fx:id="login_username" layoutX="391.0" layoutY="255.0" prefHeight="41.0" prefWidth="248.0" promptText="Username" styleClass="textfield" stylesheets="@logindesign.css">
             <font>
                 <Font name="System Bold" size="12.0" />
-            </font></TextField>
+            </font>
+        </TextField>
         <PasswordField fx:id="login_password" layoutX="391.0" layoutY="325.0" prefHeight="41.0" prefWidth="248.0" promptText="Password" styleClass="textfield" stylesheets="@logindesign.css" />
+
+        <!-- 🚨 Error Label Here -->
+        <Label fx:id="login_error" layoutX="395.0" layoutY="375.0" textFill="RED" visible="false" text="Invalid username or password." />
+
         <Button fx:id="login_btn" layoutX="439.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@logindesign.css" text="Login" textFill="#91ebfb">
             <font>
                 <Font name="Berlin Sans FB" size="12.0" />
             </font>
         </Button>
+
         <ImageView fitHeight="98.0" fitWidth="108.0" layoutX="465.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@login.png" />
             </image>
         </ImageView>
-      <Button fx:id="dont_have_account_btn" layoutX="453.0" layoutY="443.0" mnemonicParsing="false" onAction="#handleDontHaveAccountClick" styleClass="trans-btn" stylesheets="@logindesign.css">
-         <graphic>
-              <Label styleClass="signup-textfield" stylesheets="@logindesign.css" text="Don`t have account?" textFill="#42c6ff" />
-         </graphic>
-      </Button>
+
+        <Button fx:id="dont_have_account_btn" layoutX="453.0" layoutY="443.0" mnemonicParsing="false" onAction="#handleDontHaveAccountClick" styleClass="trans-btn" stylesheets="@logindesign.css">
+            <graphic>
+                <Label styleClass="signup-textfield" stylesheets="@logindesign.css" text="Don`t have account?" textFill="#42c6ff" />
+            </graphic>
+        </Button>
     </children>
 </AnchorPane>
