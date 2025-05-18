@@ -2,20 +2,24 @@ package com.example.myjavafxapp;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
-public class HelloController {
+public class HelloController implements Initializable {
 
     @FXML
     private Button dont_have_account_btn;
@@ -33,6 +37,23 @@ public class HelloController {
     private AnchorPane welcomeText;
 
     @FXML
+    private Label login_error;
+
+    private ConnectionDB connectionDB;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        login_error.setVisible(false); // Hide error on load
+
+        // Initialize database connection helper
+        connectionDB = new ConnectionDB();
+
+        // Clear error message as soon as user types again
+        login_username.textProperty().addListener((obs, oldText, newText) -> login_error.setVisible(false));
+        login_password.textProperty().addListener((obs, oldText, newText) -> login_error.setVisible(false));
+    }
+
+    @FXML
     private void handleDontHaveAccountClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
@@ -42,9 +63,9 @@ public class HelloController {
             stage.setScene(new Scene(signupRoot));
             stage.show();
 
+            // Close current window
             Stage currentStage = (Stage) dont_have_account_btn.getScene().getWindow();
             currentStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,38 +77,47 @@ public class HelloController {
         String password = login_password.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            System.out.println("Please enter both username and password.");
+            login_error.setText("Please enter both username and password.");
+            login_error.setVisible(true);
             return;
         }
 
-        try {
-            Connection conn = database.getInstance().getConnection(); // ✅ Updated to use Singleton
+        try (Connection conn = connectionDB.connect()) {
+            if (conn == null) {
+                login_error.setText("Error connecting to database.");
+                login_error.setVisible(true);
+                return;
+            }
 
-            String query = "SELECT * FROM user WHERE username = ? AND password = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, username);
-            stmt.setString(2, password);
+            // Use parameterized query to prevent SQL injection
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, username);
+                stmt.setString(2, password);
 
-            ResultSet rs = stmt.executeQuery();
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        // Login success — load dashboard
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+                        Parent dashboardRoot = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle("Dashboard");
+                        stage.setScene(new Scene(dashboardRoot));
+                        stage.show();
 
-            if (rs.next()) {
-                System.out.println("Login successful!");
-
-                // Replace with actual dashboard or next page
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
-                Parent dashboardRoot = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setTitle("Dashboard");
-                stage.setScene(new Scene(dashboardRoot));
-                stage.show();
-
-                Stage currentStage = (Stage) login_btn.getScene().getWindow();
-                currentStage.close();
-            } else {
-                System.out.println("Invalid username or password.");
+                        // Close login window
+                        Stage currentStage = (Stage) login_btn.getScene().getWindow();
+                        currentStage.close();
+                    } else {
+                        login_error.setText("Invalid username or password.");
+                        login_error.setVisible(true);
+                    }
+                }
             }
 
         } catch (Exception e) {
+            login_error.setText("Error connecting to database.");
+            login_error.setVisible(true);
             e.printStackTrace();
         }
     }
