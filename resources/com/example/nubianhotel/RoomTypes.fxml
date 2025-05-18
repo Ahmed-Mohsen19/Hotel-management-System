@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nubianhotel.Controller.RoomTypeController">
+    <children>
+        <AnchorPane prefHeight="715.0" prefWidth="300.0" style="-fx-background-color: #A67C52;">
+            <children>
+                <Text fill="WHITE" layoutX="63.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotel">
+                    <font>
+                        <Font name="Gigi" size="81.0" />
+                    </font>
+                </Text>
+                <Button layoutX="1.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="294.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Log In / Sign Up" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1.0" layoutY="412.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="294.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Rooms Service" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="-5.0" layoutY="373.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="305.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Check in / Out" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutY="490.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="294.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Resturant" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutX="-1.0" layoutY="529.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="296.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Account" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutY="451.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="294.0" style="-fx-background-color: #A67C52;" stylesheets="@../resources/Style.css" text="Rooms Types &amp; Status" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="291.0" prefHeight="789.0" prefWidth="735.0">
+            <children>
+                <ImageView fitHeight="720.0" fitWidth="907.0" layoutX="2.0" layoutY="-1.0" style="-fx-background-radius: 20;">
+                    <image>
+                        <Image url="@../../../images/background.jpg" />
+                    </image>
+                    <effect>
+                        <ColorAdjust brightness="-0.38" />
+                    </effect>
+                </ImageView>
+                <AnchorPane cache="true" cacheHint="QUALITY" layoutX="71.0" layoutY="63.0" prefHeight="297.0" prefWidth="237.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                    <children>
+                        <ImageView fitHeight="191.0" fitWidth="207.0" layoutX="18.0" layoutY="19.0">
+                            <image>
+                                <Image url="@../../../images/room1.jpeg" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="Singleroom" layoutX="135.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleSingleRoom" style="-fx-background-color: #A67C52;" text="Check Details" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Semibold Italic" size="12.0" />
+                            </font>
+                        </Button>
+                        <Text fill="#a67c52" layoutX="24.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #A18167;" text="Single Room">
+                            <font>
+                                <Font name="Segoe UI Semilight Italic" size="17.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane cache="true" cacheHint="QUALITY" layoutX="446.0" layoutY="395.0" prefHeight="276.0" prefWidth="237.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                    <children>
+                        <ImageView fx:id="familyroom" fitHeight="155.0" fitWidth="215.0" layoutX="11.0" layoutY="20.0">
+                            <image>
+                                <Image url="@../../../images/FamilyRoom2.jpg" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="Familyroom" layoutX="136.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleFamilyRoom" prefWidth="90.0" style="-fx-background-color: #A67C52;" text="Check Details" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Semibold Italic" size="12.0" />
+                            </font>
+                        </Button>
+                        <Text fill="#a67c52" layoutX="13.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #A18167;" text="Family  Room">
+                            <font>
+                                <Font name="Segoe UI Semilight Italic" size="17.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane cache="true" cacheHint="QUALITY" layoutX="446.0" layoutY="30.0" prefHeight="297.0" prefWidth="237.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                    <children>
+                        <Button fx:id="Doubleroom" layoutX="138.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleDoubleRoom" style="-fx-background-color: #A67C52;" text="Check Details" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Semibold Italic" size="12.0" />
+                            </font>
+                        </Button>
+                        <Text fill="#a67c52" layoutX="16.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #A18167;" text="Double Room">
+                            <font>
+                                <Font name="Segoe UI Semilight Italic" size="17.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="184.0" fitWidth="200.0" layoutX="20.0" layoutY="23.0">
+                            <image>
+                                <Image url="@../../../images/room2.jpg" />
+                            </image></ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane cache="true" cacheHint="QUALITY" layoutX="62.0" layoutY="445.0" prefHeight="260.0" prefWidth="237.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                    <children>
+                        <Button fx:id="Suite" layoutX="131.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleSuite" style="-fx-background-color: #A67C52;" text="Check Details" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Semibold Italic" size="12.0" />
+                            </font>
+                        </Button>
+                        <Text fill="#a67c52" layoutX="30.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #A18167;" text="Suite">
+                            <font>
+                                <Font name="Segoe UI Semilight Italic" size="17.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="133.0" fitWidth="200.0" layoutX="22.0" layoutY="39.0">
+                            <image>
+                                <Image url="@../../../images/room3.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
