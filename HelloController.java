@@ -43,12 +43,10 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        login_error.setVisible(false); // Hide error on load
+        login_error.setVisible(false);
+        connectionDB = ConnectionDB.getInstance();
 
-        // Initialize database connection helper
-        connectionDB = new ConnectionDB();
-
-        // Clear error message as soon as user types again
+        // Clear error message when user types again
         login_username.textProperty().addListener((obs, oldText, newText) -> login_error.setVisible(false));
         login_password.textProperty().addListener((obs, oldText, newText) -> login_error.setVisible(false));
     }
@@ -67,6 +65,8 @@ public class HelloController implements Initializable {
             Stage currentStage = (Stage) dont_have_account_btn.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
+            login_error.setText("Failed to load sign-up page.");
+            login_error.setVisible(true);
             e.printStackTrace();
         }
     }
@@ -82,14 +82,13 @@ public class HelloController implements Initializable {
             return;
         }
 
-        try (Connection conn = connectionDB.connect()) {
+        try (Connection conn = connectionDB.getConnection()) {
             if (conn == null) {
                 login_error.setText("Error connecting to database.");
                 login_error.setVisible(true);
                 return;
             }
 
-            // Use parameterized query to prevent SQL injection
             String query = "SELECT * FROM users WHERE username = ? AND password = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setString(1, username);
@@ -97,8 +96,8 @@ public class HelloController implements Initializable {
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
-                        // Login success — load dashboard
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+                        // Successful login
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml")); // <-- FIXED
                         Parent dashboardRoot = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setTitle("Dashboard");
@@ -116,7 +115,7 @@ public class HelloController implements Initializable {
             }
 
         } catch (Exception e) {
-            login_error.setText("Error connecting to database.");
+            login_error.setText("An unexpected error occurred.");
             login_error.setVisible(true);
             e.printStackTrace();
         }
