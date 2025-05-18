@@ -32,29 +32,34 @@ public class signup {
     @FXML
     private TextField user_signup;
 
+    // Handle "Already Have an Account?" button click
     @FXML
     private void handlealreadyHaveAccountClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-            Parent signupRoot = fxmlLoader.load();
+            Parent loginRoot = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Login");
-            stage.setScene(new Scene(signupRoot));
+            stage.setScene(new Scene(loginRoot));
             stage.show();
 
+            // Close current signup window
             Stage currentStage = (Stage) already_have_btn.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not open login screen.");
         }
     }
 
+    // Handle sign-up logic
     @FXML
     private void handleSignUp() {
         String username = user_signup.getText().trim();
         String password = pass_signup.getText();
         String confirmPassword = confirmpass_signup.getText();
 
+        // Input validation
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
             return;
@@ -66,26 +71,37 @@ public class signup {
         }
 
         try {
-            Connection conn = database.getInstance().getConnection();
+            Connection conn = new ConnectionDB().connect();
 
-            String checkUserQuery = "SELECT * FROM user WHERE username = ?";
+            // Check if username already exists
+            String checkUserQuery = "SELECT * FROM users WHERE username = ?";
             PreparedStatement checkStmt = conn.prepareStatement(checkUserQuery);
             checkStmt.setString(1, username);
             ResultSet rs = checkStmt.executeQuery();
 
             if (rs.next()) {
                 showAlert(Alert.AlertType.ERROR, "Error", "Username already exists.");
+                rs.close();
+                checkStmt.close();
+                conn.close();
                 return;
             }
 
-            String insertQuery = "INSERT INTO user (username, password) VALUES (?, ?)";
+            rs.close();
+            checkStmt.close();
+
+            // Insert new user into the database
+            String insertQuery = "INSERT INTO users (username, password) VALUES (?, ?)";
             PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
             insertStmt.setString(1, username);
-            insertStmt.setString(2, password); // In real applications, hash this password!
+            insertStmt.setString(2, password); // In production: hash the password!
             insertStmt.executeUpdate();
+            insertStmt.close();
+            conn.close();
 
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully!");
 
+            // Clear fields
             user_signup.clear();
             pass_signup.clear();
             confirmpass_signup.clear();
@@ -96,6 +112,7 @@ public class signup {
         }
     }
 
+    // Utility method for showing alerts
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
