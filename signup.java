@@ -61,43 +61,40 @@ public class signup {
 
         // Input validation
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
+            showAlert(Alert.AlertType.ERROR, "Input Error", "All fields are required.");
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
+            showAlert(Alert.AlertType.ERROR, "Input Error", "Passwords do not match.");
             return;
         }
 
-        try {
-            Connection conn = new ConnectionDB().connect();
-
-            // Check if username already exists
-            String checkUserQuery = "SELECT * FROM users WHERE username = ?";
-            PreparedStatement checkStmt = conn.prepareStatement(checkUserQuery);
-            checkStmt.setString(1, username);
-            ResultSet rs = checkStmt.executeQuery();
-
-            if (rs.next()) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Username already exists.");
-                rs.close();
-                checkStmt.close();
-                conn.close();
+        try (Connection conn = ConnectionDB.getInstance().getConnection()) {
+            if (conn == null) {
+                showAlert(Alert.AlertType.ERROR, "Database Error", "Could not connect to the database.");
                 return;
             }
 
-            rs.close();
-            checkStmt.close();
+            // Check if username already exists
+            String checkUserQuery = "SELECT * FROM users WHERE username = ?";
+            try (PreparedStatement checkStmt = conn.prepareStatement(checkUserQuery)) {
+                checkStmt.setString(1, username);
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next()) {
+                        showAlert(Alert.AlertType.ERROR, "Account Error", "Username already exists.");
+                        return;
+                    }
+                }
+            }
 
             // Insert new user into the database
             String insertQuery = "INSERT INTO users (username, password) VALUES (?, ?)";
-            PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
-            insertStmt.setString(1, username);
-            insertStmt.setString(2, password); // In production: hash the password!
-            insertStmt.executeUpdate();
-            insertStmt.close();
-            conn.close();
+            try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+                insertStmt.setString(1, username);
+                insertStmt.setString(2, password); // ⚠ In production, hash the password!
+                insertStmt.executeUpdate();
+            }
 
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully!");
 
@@ -108,7 +105,7 @@ public class signup {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not sign up. Try again.");
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not sign up. Please try again later.");
         }
     }
 
